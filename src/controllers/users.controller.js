@@ -8,9 +8,7 @@ const getAll = async (req, res) => {
 
 const create = async (req, res) => {
   if (!req.body.name) {
-    res.status(400).json({ error: 'Please enter name' });
-
-    return;
+    return res.status(400).json({ error: 'Please enter name' });
   }
 
   const newUser = await userService.create(req.body.name);
@@ -24,9 +22,7 @@ const getById = async (req, res) => {
   const targetUser = await userService.getById(targetId);
 
   if (!targetUser) {
-    res.status(404).send('Not Found');
-
-    return;
+    return res.status(404).send('Not Found');
   }
 
   res.json(targetUser);
@@ -38,9 +34,7 @@ const remove = async (req, res) => {
   const index = await userService.remove(targetId);
 
   if (index === 0) {
-    res.status(404).send('Not Found');
-
-    return;
+    return res.status(404).send('Not Found');
   }
 
   res.sendStatus(204);

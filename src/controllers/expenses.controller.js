@@ -24,9 +24,7 @@ const getById = async (req, res) => {
   const targetExpense = await expensesService.getById(targetId);
 
   if (targetExpense === null) {
-    res.status(404).send('Not Found');
-
-    return;
+    return res.status(404).send('Not Found');
   }
 
   res.json(targetExpense);
@@ -37,9 +35,7 @@ const remove = async (req, res) => {
   const index = await expensesService.remove(targetId);
 
   if (index === false) {
-    res.status(404).send('Not Found');
-
-    return;
+    return res.status(404).send('Not Found');
   }
 
   res.sendStatus(204);
@@ -51,9 +47,7 @@ const update = async (req, res) => {
   const targetExpense = await expensesService.update(targetId, req.body);
 
   if (!targetExpense) {
-    res.status(404).send('Not Found');
-
-    return;
+    return res.status(404).send('Not Found');
   }
 
   res.send(targetExpense);
