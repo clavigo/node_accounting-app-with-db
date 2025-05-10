@@ -6,12 +6,12 @@ const randomId = () => {
   return Date.now() + Math.floor(Math.random() * 1000);
 };
 
-const getAll = () => {
+const getAll = async () => {
   return User.findAll();
 };
 
-const create = (name) => {
-  const newUser = User.create({ name });
+const create = async (name) => {
+  const newUser = await User.create({ name });
 
   return newUser;
 };
@@ -26,7 +26,7 @@ const getById = async (id) => {
   return targetUser;
 };
 
-const remove = (id) => {
+const remove = async (id) => {
   return User.destroy({
     where: {
       id,

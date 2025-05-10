@@ -4,7 +4,7 @@ const {
   models: { Expense },
 } = require('../models/models');
 
-const getAll = (queries) => {
+const getAll = async (queries) => {
   const { userId, categories, from, to } = queries;
 
   if (!userId && !categories && !from && !to) {
@@ -86,20 +86,18 @@ const create = async (data) => {
   return newExpense;
 };
 
-const getById = (id) => {
-  const targetExpense = Expense.findByPk(id);
+const getById = async (id) => {
+  const targetExpense = await Expense.findByPk(id);
 
   return targetExpense;
 };
 
-const remove = (id) => {
-  Expense.destroy({
+const remove = async (id) => {
+  return Expense.destroy({
     where: {
       id,
     },
   });
-
-  return true;
 };
 
 const update = async (id, expense) => {
